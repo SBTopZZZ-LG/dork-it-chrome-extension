@@ -110,7 +110,7 @@ function onAddFilter() {
 	}
 
 	// Create element
-	document.getElementById("filters").insertAdjacentHTML("beforeend", `<div class="filter"><span>${filters[value][0]}:${value === 8 ? `${filters[value][1]}` : `"${filters[value][1]}"`}</span></div>`);
+	document.getElementById("filters").insertAdjacentHTML("beforeend", `<div class="filter fade-in"><span>${filters[value][0]}:${value === 8 ? `${filters[value][1]}` : `"${filters[value][1]}"`}</span></div>`);
 	const div = document.getElementById("filters").lastChild;
 	div.insertAdjacentHTML("beforeend", '<img style="margin-left: 10px; cursor: pointer" alt="Cancel" src="img/cancel.svg" width="16px" height="16px" />');
 	const img = div.lastChild;
@@ -118,12 +118,18 @@ function onAddFilter() {
 	filters[value][2] = div;
 
 	img.addEventListener("click", () => {
-		// Delete filter
-		document.getElementById("filters").removeChild(div);
-		filters[value][1] = filters[value][2] = null;
+		// Fade out
+		div.classList.remove("fade-in");
+		div.classList.add("fade-out");
 
-		// Update count
-		document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
+		setTimeout(() => {
+			// After animation ends, delete filter
+			document.getElementById("filters").removeChild(div);
+			filters[value][1] = filters[value][2] = null;
+
+			// Update count
+			document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
+		}, 250);
 	});
 
 	// Update count
