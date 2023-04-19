@@ -1,0 +1,17 @@
+{
+	"manifest_version": 3,
+	"name": "Dork It",
+	"version": "1.0.0",
+	"description": "Dork It is a Chrome Extension that allows users to utilize Google Dorks to get the most out of their Google searches.",
+	"icons": {
+		"25": "logo25.png",
+		"63": "logo63.png",
+		"127": "logo127.png",
+		"256": "logo256.png"
+	},
+	"author": "dev1912.sbtopzzz@gmail.com",
+	"action": {
+		"default_title": "Click on Dork It extension to access the Panel",
+		"default_popup": "src/popup.html"
+	}
+}

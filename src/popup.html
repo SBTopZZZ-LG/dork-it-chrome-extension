@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dork It</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+		/>
+
+		<!-- Fonts -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Bangers"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Inconsolata"
+		/>
+
+		<!-- popup.css -->
+		<link rel="stylesheet" href="css/popup.css" />
+
+		<!-- popup.js -->
+		<script src="js/popup.js"></script>
+	</head>
+	<body style="width: 500px; height: 500px">
+		<div class="card-content">
+			<div style="display: flex">
+				<h2
+					class="bangers title is-2"
+					style="color: rgb(255, 78, 78); margin: 5px 5px 5px 5px"
+				>
+					Dork It
+				</h2>
+				<h2 class="bangers title is-2" style="margin: 5px 5px 5px 5px">
+					v1.0.0
+				</h2>
+			</div>
+		</div>
+
+		<div class="card-content">
+			<label class="label">
+				<span
+					id="filter-count"
+					style="color: rgb(255, 78, 78); font-weight: 600"
+					>0</span
+				>
+				Active filter(s)
+			</label>
+
+			<!-- Active Filters -->
+			<div id="filters" style="display: flex; flex-direction: column"></div>
+			<hr />
+
+			<!-- Add filter -->
+			<div class="field">
+				<label class="label">Add a filter</label>
+				<div class="select is-rounded">
+					<select id="filter-select">
+						<option value="0">Select a filter...</option>
+						<option value="1">Search Exact String</option>
+						<option value="2">Match Keyword in Title</option>
+						<option value="3">Match Exact string in Title</option>
+						<option value="4">Match Keyword in Text</option>
+						<option value="5">Match Exact string in Text</option>
+						<option value="6">Match Keyword in URL</option>
+						<option value="7">Match Exact string in URL</option>
+						<option value="8">Match Site</option>
+						<option value="9">Match Numerical Range</option>
+						<option value="10">Match File Type</option>
+						<option value="11">Match Keyword in Site Anchor string</option>
+						<option value="12">Match Exact string in Site Anchor string</option>
+						<option value="13">Match Site related</option>
+						<option value="14">Match Site in Cache</option>
+					</select>
+				</div>
+			</div>
+
+			<!-- Filter-specific view -->
+			<div id="filter-view"></div>
+			<br />
+			<button
+				id="add-filter"
+				class="button is-rounded"
+				style="color: white; border: 0px; background-color: rgb(255, 78, 78)"
+			>
+				Add filter
+			</button>
+			<hr />
+
+			<button
+				id="go-button"
+				class="button is-rounded"
+				style="
+					color: white;
+					border: 0px;
+					background-color: rgb(255, 78, 78);
+					width: 100%;
+				"
+			>
+				Dork it!
+			</button>
+		</div>
+	</body>
+</html>
