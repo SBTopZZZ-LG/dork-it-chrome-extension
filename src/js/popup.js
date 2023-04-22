@@ -19,11 +19,35 @@ const filters_names = [
 const filters = filters_names.map(name => [name, null, null]);
 
 // Initialize
-window.onload = function () {
+window.onload = async function () {
+	// Update UI from metadata
+	document.getElementById("version").innerHTML = VERSION;
+
 	// Event handlers
 	document.getElementById("filter-select").addEventListener("change", onFilterSelect);
 	document.getElementById("add-filter").addEventListener("click", onAddFilter);
 	document.getElementById("go-button").addEventListener("click", onGoButton);
+
+	// Load saved filters
+	const saved_filters = (await chrome.storage.local.get(["filters"]))?.filters;
+
+	// Check if the saved filters is valid
+	if (!Array.isArray(saved_filters) || saved_filters.length !== filters.length || saved_filters.find(saved_filter => saved_filter !== null && typeof value !== "string") >= 0)
+		// Invalid save, delete save
+		await chrome.storage.local.remove(["filters"]);
+	else {
+		// Valid save
+		for (let i = 0; i < saved_filters.length; i++)
+			filters[i][1] = saved_filters[i];
+
+		// Create elements
+		for (let i = 0; i < filters.length; i++) {
+			if (filters[i][1] === null) continue;
+
+			// Create element
+			createFilterElement(i, saveToStorage);
+		}
+	}
 };
 
 // ----- Input Fields -----
@@ -81,7 +105,7 @@ function onFilterSelect() {
 }
 
 //// On add filter
-function onAddFilter() {
+async function onAddFilter() {
 	const value = parseInt(document.getElementById("filter-select").value, 10) - 1;
 
 	if (value < 0)
@@ -110,27 +134,9 @@ function onAddFilter() {
 	}
 
 	// Create element
-	document.getElementById("filters").insertAdjacentHTML("beforeend", `<div class="filter fade-in"><span>${filters[value][0]}:${value === 8 ? `${filters[value][1]}` : `"${filters[value][1]}"`}</span></div>`);
-	const div = document.getElementById("filters").lastChild;
-	div.insertAdjacentHTML("beforeend", '<img style="margin-left: 10px; cursor: pointer" alt="Cancel" src="img/cancel.svg" width="16px" height="16px" />');
-	const img = div.lastChild;
+	createFilterElement(value, saveToStorage);
 
-	filters[value][2] = div;
-
-	img.addEventListener("click", () => {
-		// Fade out
-		div.classList.remove("fade-in");
-		div.classList.add("fade-out");
-
-		setTimeout(() => {
-			// After animation ends, delete filter
-			document.getElementById("filters").removeChild(div);
-			filters[value][1] = filters[value][2] = null;
-
-			// Update count
-			document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
-		}, 250);
-	});
+	await saveToStorage();
 }
 
 //// On go button
@@ -150,3 +156,55 @@ function onGoButton() {
 	window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
 }
 // ----- Event Handlers -----
+
+// ----- Methods -----
+//// Create Filter element
+function createFilterElement(index, onRemoved) {
+	document.getElementById("filters").insertAdjacentHTML("beforeend", `<div class="filter fade-in"><span>${filters[index][0]}:${index === 8 ? `${filters[index][1]}` : `"${filters[index][1]}"`}</span></div>`);
+	const div = document.getElementById("filters").lastChild;
+	div.insertAdjacentHTML("beforeend", '<img style="margin-left: 10px; cursor: pointer" alt="Cancel" src="img/cancel.svg" width="16px" height="16px" />');
+	const img = div.lastChild;
+
+	filters[index][2] = div;
+
+	img.addEventListener("click", (e) => {
+		// Prevent further propogation for unexpected changes
+		e.stopPropagation();
+
+		// Fade out
+		div.classList.remove("fade-in");
+		div.classList.add("fade-out");
+
+		setTimeout(() => {
+			// After animation ends, delete filter
+			document.getElementById("filters").removeChild(div);
+			filters[index][1] = filters[index][2] = null;
+
+			// Update count
+			document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
+
+			// Cleanup callback?
+			if (onRemoved)
+				try {
+					onRemoved(index);
+				} catch (_) { }
+		}, 250);
+	});
+
+	// Update count
+	document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
+}
+
+//// Save filters to storage
+async function saveToStorage() {
+	try {
+		// Write filters to storage
+		await chrome.storage.local.set({
+			filters: filters.map(filter => filter[1]),
+		});
+	} catch (error) {
+		// Cannot write to storage
+		console.error(error);
+	}
+}
+// ----- Methods -----
