@@ -131,9 +131,6 @@ function onAddFilter() {
 			document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
 		}, 250);
 	});
-
-	// Update count
-	document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
 }
 
 //// On go button
