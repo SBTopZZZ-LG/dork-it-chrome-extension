@@ -31,7 +31,10 @@
 		<!-- popup.js -->
 		<script src="js/popup.js"></script>
 	</head>
-	<body style="width: 500px; height: 500px">
+	<body
+		class="keep-scrolling"
+		style="width: 500px; max-height: 600px; overflow-y: scroll"
+	>
 		<div class="card-content">
 			<div style="display: flex">
 				<h2
@@ -40,14 +43,14 @@
 				>
 					Dork It
 				</h2>
-				<h2 class="bangers title is-2" style="margin: 5px 5px 5px 5px">
+				<h2 class="bangers title text is-2" style="margin: 5px 5px 5px 5px">
 					v1.1.1
 				</h2>
 			</div>
 		</div>
 
 		<div class="card-content">
-			<label class="label">
+			<label class="label text">
 				<span
 					id="filter-count"
 					style="color: rgb(255, 78, 78); font-weight: 600"
@@ -62,10 +65,10 @@
 
 			<!-- Add filter -->
 			<div class="field">
-				<label class="label">Add a filter</label>
-				<div class="select is-rounded">
+				<label class="label text">Add a filter</label>
+				<div class="select is-rounded is-primary">
 					<select id="filter-select">
-						<option value="0">Select a filter...</option>
+						<option class="text" value="0">Select a filter...</option>
 						<option value="1">Search Exact String</option>
 						<option value="2">Match Keyword in Title</option>
 						<option value="3">Match Exact string in Title</option>
