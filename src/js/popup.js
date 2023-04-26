@@ -20,9 +20,6 @@ const filters = filters_names.map(name => [name, null, null]);
 
 // Initialize
 window.onload = async function () {
-	// Update UI from metadata
-	document.getElementById("version").innerHTML = VERSION;
-
 	// Event handlers
 	document.getElementById("filter-select").addEventListener("change", onFilterSelect);
 	document.getElementById("add-filter").addEventListener("click", onAddFilter);
