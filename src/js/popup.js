@@ -50,27 +50,27 @@ window.onload = async function () {
 // ----- Input Fields -----
 //// Keyword Input
 function keywordInput(value) {
-	return `<input id="filter-input" class="input is-rounded" type="text" value="${encodeURIComponent(filters[value][1] ?? "")}" placeholder="Keyword" />`;
+	return `<input id="filter-input" class="input is-rounded" type="text" value="${filters[value][1] ?? ""}" placeholder="Keyword" />`;
 }
 
 //// String Input
 function stringInput(value) {
-	return `<input id="filter-input" class="input is-rounded" type="text" value="${encodeURIComponent(filters[value][1] ?? "")}" placeholder="String" />`;
+	return `<input id="filter-input" class="input is-rounded" type="text" value="${filters[value][1] ?? ""}" placeholder="String" />`;
 }
 
 //// Site Input
 function siteInput(value) {
-	return `<input id="filter-input" class="input is-rounded" type="url" value="${encodeURIComponent(filters[value][1] ?? "")}" placeholder="Site" />`;
+	return `<input id="filter-input" class="input is-rounded" type="url" value="${filters[value][1] ?? ""}" placeholder="Site" />`;
 }
 
 //// Numerical Range Input
 function numericalRangeInput(value) {
-	return `<div style="display: inline-flex; flex-direction: row"><input id="filter-input-1" class="input is-rounded" type="number" value="${encodeURIComponent(filters[value][1]?.split(/\-/)[0] ?? "")}" placeholder="Start" /><div style="width: 40px"></div><input id="filter-input-2" class="input is-rounded" type="number" value="${encodeURIComponent(filters[value][1]?.split(/\-/)[1] ?? "")}" placeholder="Stop" /></div>`;
+	return `<div style="display: inline-flex; flex-direction: row"><input id="filter-input-1" class="input is-rounded" type="number" value="${filters[value][1]?.split(/\-/)[0] ?? ""}" placeholder="Start" /><div style="width: 40px"></div><input id="filter-input-2" class="input is-rounded" type="number" value="${filters[value][1]?.split(/\-/)[1] ?? ""}" placeholder="Stop" /></div>`;
 }
 
 //// File Type Input
 function fileTypeInput(value) {
-	return `<datalist id="file-type-options"><option value="pdf"></option><option value="doc"></option><option value="docx"></option><option value="xls"></option><option value="xlsx"></option><option value="ppt"></option><option value="pptx"></option><option value="txt"></option><option value="csv"></option><option value="xml"></option><option value="json"></option><option value="mp3"></option><option value="mp4"></option><option value="jpg"></option><option value="jpeg"></option><option value="png"></option><option value="gif"></option><option value="zip"></option><option value="rar"></option></datalist><input id="filter-input" class="input is-rounded" type="text" value="${encodeURIComponent(filters[value][1] ?? "")}" list="file-type-options" placeholder="File Type" />`;
+	return `<datalist id="file-type-options"><option value="pdf"></option><option value="doc"></option><option value="docx"></option><option value="xls"></option><option value="xlsx"></option><option value="ppt"></option><option value="pptx"></option><option value="txt"></option><option value="csv"></option><option value="xml"></option><option value="json"></option><option value="mp3"></option><option value="mp4"></option><option value="jpg"></option><option value="jpeg"></option><option value="png"></option><option value="gif"></option><option value="zip"></option><option value="rar"></option></datalist><input id="filter-input" class="input is-rounded" type="text" value="${filters[value][1] ?? ""}" list="file-type-options" placeholder="File Type" />`;
 }
 // ----- Input Fields -----
 
