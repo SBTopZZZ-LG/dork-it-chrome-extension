@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Dork It",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"description": "Dork It is a Chrome Extension that allows users to utilize Google Dorks to get the most out of their Google searches.",
 	"icons": {
 		"25": "logo25.png",
