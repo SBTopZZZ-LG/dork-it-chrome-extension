@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2
+
+__Bug fixes__
+
+- Removed unnecessary html encoding of special characters in filter input fields
+
 ## 1.2.1
 
 __Features__
