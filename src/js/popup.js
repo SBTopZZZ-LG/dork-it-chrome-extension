@@ -80,17 +80,30 @@ function onFilterSelect() {
 	const value = parseInt(document.getElementById("filter-select").value, 10);
 	const view = document.getElementById("filter-view");
 
-	let currentElement = null;
-	if ([1, 3, 5, 7, 12].includes(value))
+	let currentElement = null, fieldIds = [];
+	if ([1, 3, 5, 7, 12].includes(value)) {
 		currentElement = stringInput(value - 1);
-	else if ([2, 4, 6, 11].includes(value))
+		fieldIds = ["filter-input"];
+	}
+	else if ([2, 4, 6, 11].includes(value)) {
 		currentElement = keywordInput(value - 1);
-	else if ([8, 13, 14].includes(value))
+		fieldIds = ["filter-input"];
+	}
+	else if ([8, 13, 14].includes(value)) {
 		currentElement = siteInput(value - 1);
-	else if (value === 9)
+		fieldIds = ["filter-input"];
+	}
+	else if (value === 9) {
 		currentElement = numericalRangeInput(value - 1);
-	else if (value === 10)
+		fieldIds = [
+			"filter-input-1",
+			"filter-input-2"
+		];
+	}
+	else if (value === 10) {
 		currentElement = fileTypeInput(value - 1);
+		fieldIds = ["filter-input"];
+	}
 
 	if (value === 0)
 		view.removeChild(view.firstChild);
@@ -99,6 +112,12 @@ function onFilterSelect() {
 		return;
 
 	view.innerHTML = currentElement;
+
+	for (const id of fieldIds)
+		document.getElementById(id).onkeydown = e => {
+			if (e.key === "Enter")
+				document.getElementById("add-filter").click();
+		};
 }
 
 //// On add filter
