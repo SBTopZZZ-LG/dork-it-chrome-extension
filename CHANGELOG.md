@@ -1,10 +1,24 @@
 # Changelog
 
+## 1.3.2
+
+__Features__
+
+- Added keyboard shortcuts
+
+__Bug fixes__
+
+- Disabled Dork button if no filters are added
+
+---
+
 ## 1.2.2
 
 __Bug fixes__
 
 - Removed unnecessary html encoding of special characters in filter input fields
+
+---
 
 ## 1.2.1
 
