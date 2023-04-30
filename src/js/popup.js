@@ -181,6 +181,10 @@ function onGoButton() {
 			query += `${filters[i][0]}:"${filters[i][1]}" `;
 	}
 
+	// If no filters exist, do nothing
+	if (query === "")
+		return;
+
 	window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
 }
 // ----- Event Handlers -----
