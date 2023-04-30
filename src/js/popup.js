@@ -25,6 +25,12 @@ window.onload = async function () {
 	document.getElementById("add-filter").addEventListener("click", onAddFilter);
 	document.getElementById("go-button").addEventListener("click", onGoButton);
 
+	// Trigger `go-button` press when Enter key is pressed in the context of `body`
+	document.body.onkeydown = e => {
+		if (e.key === "Enter")
+			document.getElementById("go-button").click();
+	};
+
 	// Load saved filters
 	const saved_filters = (await chrome.storage.local.get(["filters"]))?.filters;
 
@@ -115,8 +121,14 @@ function onFilterSelect() {
 
 	for (const id of fieldIds)
 		document.getElementById(id).onkeydown = e => {
-			if (e.key === "Enter")
+			// Prevent propogation
+			e.stopPropagation();
+
+			if (e.key === "Enter") {
+				// Trigger button click and lose focus
 				document.getElementById("add-filter").click();
+				document.getElementById(id).blur();
+			}
 		};
 }
 
