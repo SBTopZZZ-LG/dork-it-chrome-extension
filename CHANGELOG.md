@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.2
+
+__Features__
+
+- Added "Rate us" button
+- Auto disable buttons visually (temporarily) when a certain operation is not possible
+
+---
+
 ## 1.3.2
 
 __Features__
