@@ -51,6 +51,9 @@ window.onload = async function () {
 			// Create element
 			createFilterElement(i, saveToStorage);
 		}
+
+		// Enable go button?
+		document.getElementById("go-button").disabled = filters.every(filter => filter[2] === null);
 	}
 };
 
@@ -112,8 +115,17 @@ function onFilterSelect() {
 		fieldIds = ["filter-input"];
 	}
 
-	if (value === 0)
+	if (value === 0) {
 		view.removeChild(view.firstChild);
+
+		// Disable add filter button
+		document.getElementById("add-filter").disabled = true;
+
+		return;
+	}
+
+	// Enable add filter button
+	document.getElementById("add-filter").disabled = false;
 
 	if (currentElement === null)
 		return;
@@ -221,6 +233,9 @@ function createFilterElement(index, onRemoved) {
 			// Update count
 			document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
 
+			// If there are no more active filters, disable go button
+			document.getElementById("go-button").disabled = filters.every(filter => filter[2] === null);
+
 			// Cleanup callback?
 			if (onRemoved)
 				try {
@@ -231,6 +246,9 @@ function createFilterElement(index, onRemoved) {
 
 	// Update count
 	document.getElementById("filter-count").innerText = filters.filter(filter => !!filter[2]).length;
+
+	// Enable go button
+	document.getElementById("go-button").disabled = false;
 }
 
 //// Save filters to storage
