@@ -24,6 +24,7 @@ window.onload = async function () {
 	document.getElementById("filter-select").addEventListener("change", onFilterSelect);
 	document.getElementById("add-filter").addEventListener("click", onAddFilter);
 	document.getElementById("go-button").addEventListener("click", onGoButton);
+	document.getElementById("rate-us").addEventListener("click", onRateUsButton);
 
 	// Trigger `go-button` press when Enter key is pressed in the context of `body`
 	document.body.onkeydown = e => {
@@ -186,6 +187,11 @@ function onGoButton() {
 		return;
 
 	window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank");
+}
+
+//// On rate us button
+function onRateUsButton() {
+	window.open("https://chrome.google.com/webstore/detail/dork-it/lnihadedihilhjcbnimcobnppdlldocm", "_blank");
 }
 // ----- Event Handlers -----
 
