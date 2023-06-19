@@ -188,6 +188,8 @@ function onGoButton() {
 
 		if (i === 0)
 			query += `"${filters[i][1]}" `;
+		else if (i === 7)
+			query += `${filters[i][0]}:${filters[i][1]} `;
 		else if (i === 8)
 			query += `${filters[i][0]}:${filters[i][1]} `;
 		else
