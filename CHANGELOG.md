@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.3
+
+__Bug fixes__
+
+- Fixed site dork issue by avoiding double quotation marks around the hostname
+
+---
+
 ## 1.4.2
 
 __Features__
